@@ -17,5 +17,9 @@ class Item {
     getDensity() {
         return this.weigth / this.getVolume();
     }
+    getFreight() {
+        const freight = 1000 * this.getVolume() * (this.getDensity() / 100);
+        return (freight < 10) ? 10 : freight;
+    }
 }
 exports.default = Item;

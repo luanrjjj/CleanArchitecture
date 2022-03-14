@@ -10,9 +10,11 @@ class Order {
         this.issueDate = issueDate;
         this.cpf = new Cpf_1.default(cpf);
         this.orderItems = [];
+        this.freight = 0;
     }
     ;
     addItem(item, quantity) {
+        this.freight += item.getFreight() * quantity;
         this.orderItems.push(new OrderItem_1.default(item.idItem, item.price, quantity));
     }
     addCoupon(coupon) {
@@ -29,6 +31,9 @@ class Order {
             total -= (total * this.coupon.percentage) / 100;
         }
         return total;
+    }
+    getFreight() {
+        return this.freight;
     }
 }
 exports.default = Order;
